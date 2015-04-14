@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditStatistiqueTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditStatistiqueLabel_nbrFpartage}" for="nbrFpartage" />
+                    <h:inputText id="nbrFpartage" value="#{statistiqueController.selected.nbrFpartage}" title="#{bundle.EditStatistiqueTitle_nbrFpartage}" />
+                    <h:outputLabel value="#{bundle.EditStatistiqueLabel_nbrFvue}" for="nbrFvue" />
+                    <h:inputText id="nbrFvue" value="#{statistiqueController.selected.nbrFvue}" title="#{bundle.EditStatistiqueTitle_nbrFvue}" />
+                    <h:outputLabel value="#{bundle.EditStatistiqueLabel_audio}" for="audio" />
+                    <h:selectOneMenu id="audio" value="#{statistiqueController.selected.audio}" title="#{bundle.EditStatistiqueTitle_audio}" >
+                        <f:selectItems value="#{audioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditStatistiqueLabel_video}" for="video" />
+                    <h:selectOneMenu id="video" value="#{statistiqueController.selected.video}" title="#{bundle.EditStatistiqueTitle_video}" >
+                        <f:selectItems value="#{videoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditStatistiqueLabel_text}" for="text" />
+                    <h:selectOneMenu id="text" value="#{statistiqueController.selected.text}" title="#{bundle.EditStatistiqueTitle_text}" >
+                        <f:selectItems value="#{textController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditStatistiqueLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{statistiqueController.selected.id}" title="#{bundle.EditStatistiqueTitle_id}" />
+                </h:panelGrid>
+                <h:commandLink action="#{statistiqueController.update}" value="#{bundle.EditStatistiqueSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditStatistiqueViewLink}"/>
+                <br />
+                <h:commandLink action="#{statistiqueController.prepareList}" value="#{bundle.EditStatistiqueShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditStatistiqueIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

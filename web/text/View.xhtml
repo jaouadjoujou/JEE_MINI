@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTextTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTextLabel_dossier}"/>
+                    <h:outputText value="#{textController.selected.dossier}" title="#{bundle.ViewTextTitle_dossier}"/>
+                    <h:outputText value="#{bundle.ViewTextLabel_statistique}"/>
+                    <h:outputText value="#{textController.selected.statistique}" title="#{bundle.ViewTextTitle_statistique}"/>
+                    <h:outputText value="#{bundle.ViewTextLabel_nom}"/>
+                    <h:outputText value="#{textController.selected.nom}" title="#{bundle.ViewTextTitle_nom}"/>
+                    <h:outputText value="#{bundle.ViewTextLabel_extension}"/>
+                    <h:outputText value="#{textController.selected.extension}" title="#{bundle.ViewTextTitle_extension}"/>
+                    <h:outputText value="#{bundle.ViewTextLabel_chemin}"/>
+                    <h:outputText value="#{textController.selected.chemin}" title="#{bundle.ViewTextTitle_chemin}"/>
+                    <h:outputText value="#{bundle.ViewTextLabel_descriptif}"/>
+                    <h:outputText value="#{textController.selected.descriptif}" title="#{bundle.ViewTextTitle_descriptif}"/>
+                    <h:outputText value="#{bundle.ViewTextLabel_nbrPage}"/>
+                    <h:outputText value="#{textController.selected.nbrPage}" title="#{bundle.ViewTextTitle_nbrPage}"/>
+                    <h:outputText value="#{bundle.ViewTextLabel_id}"/>
+                    <h:outputText value="#{textController.selected.id}" title="#{bundle.ViewTextTitle_id}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{textController.destroyAndView}" value="#{bundle.ViewTextDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTextEditLink}"/>
+                <br />
+                <h:commandLink action="#{textController.prepareCreate}" value="#{bundle.ViewTextCreateLink}" />
+                <br />
+                <h:commandLink action="#{textController.prepareList}" value="#{bundle.ViewTextShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTextIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

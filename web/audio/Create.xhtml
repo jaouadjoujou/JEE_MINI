@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAudioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAudioLabel_dossier}" for="dossier" />
+                    <h:selectOneMenu id="dossier" value="#{audioController.selected.dossier}" title="#{bundle.CreateAudioTitle_dossier}" >
+                        <f:selectItems value="#{dossierController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAudioLabel_statistique}" for="statistique" />
+                    <h:selectOneMenu id="statistique" value="#{audioController.selected.statistique}" title="#{bundle.CreateAudioTitle_statistique}" >
+                        <f:selectItems value="#{statistiqueController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateAudioLabel_nom}" for="nom" />
+                    <h:inputText id="nom" value="#{audioController.selected.nom}" title="#{bundle.CreateAudioTitle_nom}" />
+                    <h:outputLabel value="#{bundle.CreateAudioLabel_extension}" for="extension" />
+                    <h:inputText id="extension" value="#{audioController.selected.extension}" title="#{bundle.CreateAudioTitle_extension}" />
+                    <h:outputLabel value="#{bundle.CreateAudioLabel_chemin}" for="chemin" />
+                    <h:inputText id="chemin" value="#{audioController.selected.chemin}" title="#{bundle.CreateAudioTitle_chemin}" />
+                    <h:outputLabel value="#{bundle.CreateAudioLabel_descriptif}" for="descriptif" />
+                    <h:inputText id="descriptif" value="#{audioController.selected.descriptif}" title="#{bundle.CreateAudioTitle_descriptif}" />
+                    <h:outputLabel value="#{bundle.CreateAudioLabel_duree}" for="duree" />
+                    <h:inputText id="duree" value="#{audioController.selected.duree}" title="#{bundle.CreateAudioTitle_duree}" />
+                    <h:outputLabel value="#{bundle.CreateAudioLabel_qualite}" for="qualite" />
+                    <h:inputText id="qualite" value="#{audioController.selected.qualite}" title="#{bundle.CreateAudioTitle_qualite}" />
+                    <h:outputLabel value="#{bundle.CreateAudioLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{audioController.selected.id}" title="#{bundle.CreateAudioTitle_id}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{audioController.create}" value="#{bundle.CreateAudioSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{audioController.prepareList}" value="#{bundle.CreateAudioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAudioIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

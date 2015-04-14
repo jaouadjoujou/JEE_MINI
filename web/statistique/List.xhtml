@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListStatistiqueTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListStatistiqueEmpty}" rendered="#{statistiqueController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{statistiqueController.items.rowCount > 0}">
+                    <h:outputText value="#{statistiqueController.pagination.pageFirstItem + 1}..#{statistiqueController.pagination.pageLastItem + 1}/#{statistiqueController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{statistiqueController.previous}" value="#{bundle.Previous} #{statistiqueController.pagination.pageSize}" rendered="#{statistiqueController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{statistiqueController.next}" value="#{bundle.Next} #{statistiqueController.pagination.pageSize}" rendered="#{statistiqueController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{statistiqueController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStatistiqueTitle_nbrFpartage}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nbrFpartage}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStatistiqueTitle_nbrFvue}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nbrFvue}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStatistiqueTitle_audio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.audio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStatistiqueTitle_video}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.video}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStatistiqueTitle_text}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.text}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStatistiqueTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{statistiqueController.prepareView}" value="#{bundle.ListStatistiqueViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{statistiqueController.prepareEdit}" value="#{bundle.ListStatistiqueEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{statistiqueController.destroy}" value="#{bundle.ListStatistiqueDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{statistiqueController.prepareCreate}" value="#{bundle.ListStatistiqueCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListStatistiqueIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
